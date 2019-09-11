@@ -4,6 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -42,5 +43,31 @@ public class GoogleSeleniumTest {
         WebElement selectFirstPicture = driver.findElement(By.xpath("/html/body/div[6]/div[3]/div[3]/div[2]/div/div[2]/div[2]/div/div/div/div/div[2]/div[1]/div[1]/a[1]/img"));
         selectFirstPicture.click();
         Thread.sleep(1000);
+    }
+
+    @Test
+    public void seleniumStuff() throws InterruptedException {
+        driver.get("https://www.seleniumeasy.com/test/basic-first-form-demo.html");
+        WebElement textBox = driver.findElementById("user-message");
+        textBox.sendKeys("nuyce box");
+        Thread.sleep(1000);
+        WebElement submitButton = driver.findElementById("get-input").findElement(By.className("btn"));
+        submitButton.click();
+        Thread.sleep(2000);
+        JavascriptExecutor scroll = (JavascriptExecutor)driver;
+        scroll.executeScript("window.scroll(0,200)");
+
+        WebElement int1 = driver.findElementById("sum1");
+        int1.sendKeys("5");
+        Thread.sleep(500);
+        WebElement int2 = driver.findElementById("sum2");
+        int2.sendKeys("6");
+        Thread.sleep(500);
+        WebElement addButton = driver.findElementById("gettotal").findElement(By.className("btn"));
+        addButton.click();
+        Thread.sleep(2000);
+
+
+
     }
 }
