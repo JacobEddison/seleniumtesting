@@ -8,6 +8,8 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -84,5 +86,31 @@ public class GoogleSeleniumTest {
         Thread.sleep(1000);
         assertEquals(unselect.getAttribute("value"), "Check All");
 
+    }
+
+    @Test
+    public void radioButtonTest() throws InterruptedException {
+        driver.get("https://www.seleniumeasy.com/test/basic-radiobutton-demo.html");
+        List<WebElement> genders = driver.findElementsByName("optradio");
+        for (WebElement i:genders){
+           i.click();
+           Thread.sleep(200);
+           WebElement select = driver.findElementById("buttoncheck");
+           select.click();
+           Thread.sleep(200);
+           WebElement message = driver.findElement(By.className("radiobutton"));
+           assertEquals(message.getText(), "Radio button '"+i.getAttribute("value")+"' is checked");
+           Thread.sleep(500);
+        }
+        Thread.sleep(100);
+        List<WebElement> genders2 = driver.findElementsByName("gender");
+        List<WebElement> ageGroup = driver.findElementsByName("ageGroup");
+        for (WebElement i:genders2){
+            for (WebElement j:ageGroup){
+                i.click();
+                j.click();
+
+            }
+        }
     }
 }
