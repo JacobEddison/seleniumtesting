@@ -38,6 +38,9 @@ public class GoogleSeleniumTest {
         Thread.sleep(1000);
         WebElement linkToBiggerPictures = driver.findElementByLinkText("Images for funny cat");
         linkToBiggerPictures.click();
-        Thread.sleep(5000);
+        Thread.sleep(1000);
+        WebElement selectFirstPicture = driver.findElement(By.xpath("/html/body/div[6]/div[3]/div[3]/div[2]/div/div[2]/div[2]/div/div/div/div/div[2]/div[1]/div[1]/a[1]/img"));
+        selectFirstPicture.click();
+        Thread.sleep(1000);
     }
 }
