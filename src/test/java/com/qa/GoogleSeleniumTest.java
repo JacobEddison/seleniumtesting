@@ -8,6 +8,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class GoogleSeleniumTest {
@@ -15,14 +16,14 @@ public class GoogleSeleniumTest {
     private ChromeDriver driver;
 
     @Before
-    public void setup(){
-        System.setProperty("webdriver.chrome.driver","C:\\Users\\Admin\\IdeaProjects\\seleniumtesting\\src\\test\\java\\resources\\chromedriver.exe");
+    public void setup() {
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Admin\\IdeaProjects\\seleniumtesting\\src\\test\\java\\resources\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
     }
 
     @After
-    public void tearDown(){
+    public void tearDown() {
         driver.close();
     }
 
@@ -54,7 +55,7 @@ public class GoogleSeleniumTest {
         WebElement submitButton = driver.findElementById("get-input").findElement(By.className("btn"));
         submitButton.click();
         Thread.sleep(2000);
-        JavascriptExecutor scroll = (JavascriptExecutor)driver;
+        JavascriptExecutor scroll = (JavascriptExecutor) driver;
         scroll.executeScript("window.scroll(0,200)");
 
         WebElement int1 = driver.findElementById("sum1");
@@ -66,8 +67,22 @@ public class GoogleSeleniumTest {
         WebElement addButton = driver.findElementById("gettotal").findElement(By.className("btn"));
         addButton.click();
         Thread.sleep(2000);
+    }
 
-
+    @Test
+    public void checkboxTest() throws InterruptedException {
+        driver.get("https://www.seleniumeasy.com/test/basic-checkbox-demo.html");
+        WebElement checkbox = driver.findElementById("isAgeSelected");
+        checkbox.click();
+        Thread.sleep(2000);
+        WebElement select = driver.findElementById("check1");
+        select.click();
+        Thread.sleep(1000);
+        assertEquals(select.getAttribute("value"), "Uncheck All");
+        WebElement unselect = driver.findElementById("check1");
+        unselect.click();
+        Thread.sleep(1000);
+        assertEquals(unselect.getAttribute("value"), "Check All");
 
     }
 }
